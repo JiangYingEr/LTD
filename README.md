@@ -1,1 +1,3 @@
 # LTD: Low-Overhead Topology Discovery using Programmable Data Planes
+
+Existing topology discovery methods for programmable networks (e.g., SDN) heavily rely on controllers to process massive LLDP packets, causing severe overhead that increases linearly with link changes. Therefore, we propose LTD, the first mechanism offloading core topology discovery to programmable data planes. LTD adopts three key strategies: three-layered maximum offloading that distributes tasks across switch ASIC, OS, and controller; an OS-ASIC co-driven mechanism that utilizes the characteristics of programmable switches to achieve periodic link change identification; and a plug-and-play data structure for seamless topology view updates. 
