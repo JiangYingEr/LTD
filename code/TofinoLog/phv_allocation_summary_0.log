@@ -1,0 +1,223 @@
+PHV ALLOCATION SUCCESSFUL
+PHV Allocation
++-----------+-------+-----------------+----------------------------------------------+
+|Container  |Gress  |Container Slice  |Field Slice                                   |
++-----------+-------+-----------------+----------------------------------------------+
+|B0         |I-HW   |                 |ingress::hdr.cpu_metadata.fromCpu             |
+|           |       |                 |                                              |
+|B1         |I-HW   |[0]              |ingress::hdr.ethernet.$valid                  |
+|           |       |[1]              |ingress::hdr.cpu_metadata.$valid              |
+|           |       |[2]              |ingress::hdr.lldp.$valid                      |
+|           |       |[5:3]            |ingress::flag_0                               |
+|           |       |                 |                                              |
+|...        |       |                 |                                              |
+|           |       |                 |                                              |
+|B16        |E-HW   |                 |egress::hdr.cpu_metadata.fromCpu              |
+|           |       |                 |                                              |
+|B17        |E-HW   |[0]              |egress::hdr.ethernet.$valid                   |
+|           |       |[1]              |egress::hdr.cpu_metadata.$valid               |
+|           |       |[2]              |egress::hdr.lldp.$valid                       |
+|           |       |                 |                                              |
+|...        |       |                 |                                              |
+|           |       |                 |                                              |
+|H0         |I-HW   |                 |ingress::hdr.cpu_metadata.origEtherType       |
+|           |       |                 |ingress::hdr.lldp.port_id                     |
+|           |       |                 |                                              |
+|H1         |I-HW   |                 |ingress::hdr.ethernet.etherType               |
+|           |       |                 |                                              |
+|H2         |I-HW   |[4:0]            |ingress::ig_intr_md.ingress_port[4:0]         |
+|           |       |[5]              |ingress::ig_intr_md.ingress_port[5]           |
+|           |       |[8:6]            |ingress::ig_intr_md.ingress_port[8:6]         |
+|           |       |                 |                                              |
+|H3         |I-HW   |[4:0]            |ingress::hdr.cpu_metadata.srcPort[4:0]        |
+|           |       |[5]              |ingress::hdr.cpu_metadata.srcPort[5]          |
+|           |       |[8:6]            |ingress::hdr.cpu_metadata.srcPort[8:6]        |
+|           |       |[15:9]           |ingress::hdr.cpu_metadata.srcPort[15:9]       |
+|           |       |                 |                                              |
+|H4         |I-HW   |[4:0]            |ingress::meta.shift_len[4:0]                  |
+|           |       |[5]              |ingress::meta.shift_len[5]                    |
+|           |       |                 |                                              |
+|H5         |I-HW   |                 |ingress::ig_intr_md_for_tm.mcast_grp_a        |
+|           |       |                 |                                              |
+|H6         |I-HW   |[8:0]            |ingress::ig_intr_md_for_tm.ucast_egress_port  |
+|           |       |                 |                                              |
+|H7         |I-HW   |                 |ingress::hdr.ethernet.dstAddr[47:32]          |
+|           |       |                 |                                              |
+|...        |       |                 |                                              |
+|           |       |                 |                                              |
+|H16        |E-HW   |[8:0]            |egress::eg_intr_md.egress_port                |
+|           |       |                 |                                              |
+|H17        |E-HW   |[8:0]            |egress::hdr.lldp.port_id[8:0]                 |
+|           |       |[15:9]           |egress::hdr.lldp.port_id[15:9]                |
+|           |       |                 |                                              |
+|...        |       |                 |                                              |
+|           |       |                 |                                              |
+|W0         |I-HW   |                 |ingress::hdr.cpu_metadata.switch_id           |
+|           |       |                 |ingress::hdr.lldp.switch_id                   |
+|           |       |                 |                                              |
+|W1         |I-HW   |                 |ingress::meta.switch_id                       |
+|           |       |                 |                                              |
+|W2         |I-HW   |                 |ingress::hdr.ethernet.dstAddr[31:0]           |
+|           |       |                 |                                              |
+|W3         |I-HW   |                 |ingress::meta.r                               |
+|           |       |                 |                                              |
+|...        |       |                 |                                              |
+|           |       |                 |                                              |
+|TH0        |I      |                 |ingress::hdr.ethernet.srcAddr[15:0]           |
+|           |       |                 |                                              |
+|TW0        |I      |                 |ingress::hdr.ethernet.srcAddr[47:16]          |
+|           |       |                 |                                              |
+|...        |       |                 |                                              |
+|           |       |                 |                                              |
+|TW4        |E      |[15:0]           |egress::hdr.cpu_metadata.srcPort              |
+|           |       |[31:16]          |egress::hdr.cpu_metadata.origEtherType        |
+|           |       |                 |egress::hdr.lldp.switch_id                    |
+|           |       |                 |                                              |
+|...        |       |                 |                                              |
+|           |       |                 |                                              |
+|TW5        |E      |                 |egress::hdr.ethernet.srcAddr[31:0]            |
+|           |       |                 |                                              |
+|...        |       |                 |                                              |
+|           |       |                 |                                              |
+|TH6        |E      |                 |egress::hdr.ethernet.etherType                |
+|           |       |                 |                                              |
+|TW6        |E      |                 |egress::hdr.ethernet.dstAddr[31:0]            |
+|           |       |                 |                                              |
+|...        |       |                 |                                              |
+|           |       |                 |                                              |
+|TH7        |E      |                 |egress::hdr.ethernet.srcAddr[47:32]           |
+|           |       |                 |                                              |
+|TW7        |E      |                 |egress::hdr.cpu_metadata.switch_id            |
+|           |       |                 |                                              |
+|TH8        |E      |                 |egress::hdr.ethernet.dstAddr[47:32]           |
+|           |       |                 |                                              |
+|...        |       |                 |                                              |
+|           |       |                 |                                              |
++-----------+-------+-----------------+----------------------------------------------+
+
+
+POV Allocation (ingress):
++-----------+-----------------+----------------------------------+
+|Container  |Container Slice  |Field Slice                       |
++-----------+-----------------+----------------------------------+
+|B1         |[0]              |ingress::hdr.ethernet.$valid      |
+|           |[1]              |ingress::hdr.cpu_metadata.$valid  |
+|           |[2]              |ingress::hdr.lldp.$valid          |
++-----------+-----------------+----------------------------------+
+|           |Total Bits Used  |3 / 256 ( 1.17 %)                 |
+|           |Pack Density     |3 / 8 ( 37.5 %)                   |
++-----------+-----------------+----------------------------------+
+
+POV Allocation (egress):
++-----------+-----------------+---------------------------------+
+|Container  |Container Slice  |Field Slice                      |
++-----------+-----------------+---------------------------------+
+|B17        |[0]              |egress::hdr.ethernet.$valid      |
+|           |[1]              |egress::hdr.cpu_metadata.$valid  |
+|           |[2]              |egress::hdr.lldp.$valid          |
++-----------+-----------------+---------------------------------+
+|           |Total Bits Used  |3 / 256 ( 1.17 %)                |
+|           |Pack Density     |3 / 8 ( 37.5 %)                  |
++-----------+-----------------+---------------------------------+
+
++----------------------------------------------+-----------+----------------+-----------------+
+|Field Slice                                   |Container  |Container Type  |Container Slice  |
++----------------------------------------------+-----------+----------------+-----------------+
+|ingress::hdr.ethernet.dstAddr[47:32]          |H7         |H               |                 |
+|ingress::hdr.ethernet.dstAddr[31:0]           |W2         |W               |                 |
+|ingress::hdr.ethernet.srcAddr[15:0]           |TH0        |TH              |                 |
+|ingress::hdr.ethernet.srcAddr[47:16]          |TW0        |TW              |                 |
+|ingress::hdr.ethernet.etherType               |H1         |H               |                 |
+|ingress::hdr.cpu_metadata.fromCpu             |B0         |B               |                 |
+|ingress::hdr.cpu_metadata.switch_id           |W0         |W               |                 |
+|ingress::hdr.cpu_metadata.origEtherType       |H0         |H               |                 |
+|ingress::hdr.cpu_metadata.srcPort[4:0]        |H3         |H               |[4:0]            |
+|ingress::hdr.cpu_metadata.srcPort[5]          |H3         |H               |[5]              |
+|ingress::hdr.cpu_metadata.srcPort[8:6]        |H3         |H               |[8:6]            |
+|ingress::hdr.cpu_metadata.srcPort[15:9]       |H3         |H               |[15:9]           |
+|ingress::hdr.lldp.switch_id                   |W0         |W               |                 |
+|ingress::hdr.lldp.port_id                     |H0         |H               |                 |
+|ingress::meta.switch_id                       |W1         |W               |                 |
+|ingress::meta.r                               |W3         |W               |                 |
+|ingress::meta.shift_len[4:0]                  |H4         |H               |[4:0]            |
+|ingress::meta.shift_len[5]                    |H4         |H               |[5]              |
+|ingress::ig_intr_md.ingress_port[4:0]         |H2         |H               |[4:0]            |
+|ingress::ig_intr_md.ingress_port[5]           |H2         |H               |[5]              |
+|ingress::ig_intr_md.ingress_port[8:6]         |H2         |H               |[8:6]            |
+|ingress::ig_intr_md_for_tm.ucast_egress_port  |H6         |H               |[8:0]            |
+|ingress::ig_intr_md_for_tm.mcast_grp_a        |H5         |H               |                 |
+|ingress::flag_0                               |B1         |B               |[5:3]            |
+|egress::hdr.ethernet.dstAddr[47:32]           |TH8        |TH              |                 |
+|egress::hdr.ethernet.dstAddr[31:0]            |TW6        |TW              |                 |
+|egress::hdr.ethernet.srcAddr[47:32]           |TH7        |TH              |                 |
+|egress::hdr.ethernet.srcAddr[31:0]            |TW5        |TW              |                 |
+|egress::hdr.ethernet.etherType                |TH6        |TH              |                 |
+|egress::hdr.cpu_metadata.fromCpu              |B16        |B               |                 |
+|egress::hdr.cpu_metadata.switch_id            |TW7        |TW              |                 |
+|egress::hdr.cpu_metadata.origEtherType        |TW4        |TW              |[31:16]          |
+|egress::hdr.cpu_metadata.srcPort              |TW4        |TW              |[15:0]           |
+|egress::hdr.lldp.switch_id                    |TW4        |TW              |                 |
+|egress::hdr.lldp.port_id[8:0]                 |H17        |H               |[8:0]            |
+|egress::hdr.lldp.port_id[15:9]                |H17        |H               |[15:9]           |
+|egress::eg_intr_md.egress_port                |H16        |H               |[8:0]            |
+|ingress::hdr.ethernet.$valid                  |B1         |B               |[0]              |
+|ingress::hdr.cpu_metadata.$valid              |B1         |B               |[1]              |
+|ingress::hdr.lldp.$valid                      |B1         |B               |[2]              |
+|egress::hdr.ethernet.$valid                   |B17        |B               |[0]              |
+|egress::hdr.cpu_metadata.$valid               |B17        |B               |[1]              |
+|egress::hdr.lldp.$valid                       |B17        |B               |[2]              |
++----------------------------------------------+-----------+----------------+-----------------+
+
+
+
+
+
+PHV Allocation State
+
+MAU Groups:
++-------------------+-----------------+---------------+----------------------+---------------------+----------------+---------------------------+--------------------------+----------------+
+|     MAU Group     | Containers Used |   Bits Used   | Bits Used on Ingress | Bits Used on Egress | Bits Allocated | Bits Allocated on Ingress | Bits Allocated on Egress | Available Bits |
++-------------------+-----------------+---------------+----------------------+---------------------+----------------+---------------------------+--------------------------+----------------+
+|       B0-15       |   2 ( 12.5 %)   | 14 ( 10.9 %)  |     14 ( 10.9 %)     |     0 (   0  %)     |  14 ( 10.9 %)  |       14 ( 10.9 %)        |       0 (   0  %)        |      128       |
+|      B16-31       |   2 ( 12.5 %)   | 11 ( 8.59 %)  |     0 (   0  %)      |    11 ( 8.59 %)     |  11 ( 8.59 %)  |        0 (   0  %)        |       11 ( 8.59 %)       |      128       |
+|      B32-47       |   0 (   0  %)   |  0 (   0  %)  |     0 (   0  %)      |     0 (   0  %)     |  0 (   0  %)   |        0 (   0  %)        |       0 (   0  %)        |      128       |
+|      B48-63       |   0 (   0  %)   |  0 (   0  %)  |     0 (   0  %)      |     0 (   0  %)     |  0 (   0  %)   |        0 (   0  %)        |       0 (   0  %)        |      128       |
++-------------------+-----------------+---------------+----------------------+---------------------+----------------+---------------------------+--------------------------+----------------+
+|       H0-15       |   8 (  50  %)   | 104 ( 40.6 %) |    104 ( 40.6 %)     |     0 (   0  %)     | 120 ( 46.9 %)  |       120 ( 46.9 %)       |       0 (   0  %)        |      256       |
+|      H16-31       |   2 ( 12.5 %)   | 25 ( 9.77 %)  |     0 (   0  %)      |    25 ( 9.77 %)     |  25 ( 9.77 %)  |        0 (   0  %)        |       25 ( 9.77 %)       |      256       |
+|      H32-47       |   0 (   0  %)   |  0 (   0  %)  |     0 (   0  %)      |     0 (   0  %)     |  0 (   0  %)   |        0 (   0  %)        |       0 (   0  %)        |      256       |
+|      H48-63       |   0 (   0  %)   |  0 (   0  %)  |     0 (   0  %)      |     0 (   0  %)     |  0 (   0  %)   |        0 (   0  %)        |       0 (   0  %)        |      256       |
+|      H64-79       |   0 (   0  %)   |  0 (   0  %)  |     0 (   0  %)      |     0 (   0  %)     |  0 (   0  %)   |        0 (   0  %)        |       0 (   0  %)        |      256       |
+|      H80-95       |   0 (   0  %)   |  0 (   0  %)  |     0 (   0  %)      |     0 (   0  %)     |  0 (   0  %)   |        0 (   0  %)        |       0 (   0  %)        |      256       |
++-------------------+-----------------+---------------+----------------------+---------------------+----------------+---------------------------+--------------------------+----------------+
+|       W0-15       |   4 (  25  %)   | 128 (  25  %) |    128 (  25  %)     |     0 (   0  %)     | 160 ( 31.2 %)  |       160 ( 31.2 %)       |       0 (   0  %)        |      512       |
+|      W16-31       |   0 (   0  %)   |  0 (   0  %)  |     0 (   0  %)      |     0 (   0  %)     |  0 (   0  %)   |        0 (   0  %)        |       0 (   0  %)        |      512       |
+|      W32-47       |   0 (   0  %)   |  0 (   0  %)  |     0 (   0  %)      |     0 (   0  %)     |  0 (   0  %)   |        0 (   0  %)        |       0 (   0  %)        |      512       |
+|      W48-63       |   0 (   0  %)   |  0 (   0  %)  |     0 (   0  %)      |     0 (   0  %)     |  0 (   0  %)   |        0 (   0  %)        |       0 (   0  %)        |      512       |
++-------------------+-----------------+---------------+----------------------+---------------------+----------------+---------------------------+--------------------------+----------------+
+|   Usage for 8b    |   4 ( 6.25 %)   | 25 ( 4.88 %)  |     14 ( 2.73 %)     |    11 ( 2.15 %)     |  25 ( 4.88 %)  |       14 ( 2.73 %)        |       11 ( 2.15 %)       |      512       |
+|   Usage for 16b   |  10 ( 10.4 %)   | 129 (  8.4 %) |    104 ( 6.77 %)     |    25 ( 1.63 %)     | 145 ( 9.44 %)  |       120 ( 7.81 %)       |       25 ( 1.63 %)       |      1536      |
+|   Usage for 32b   |   4 ( 6.25 %)   | 128 ( 6.25 %) |    128 ( 6.25 %)     |     0 (   0  %)     | 160 ( 7.81 %)  |       160 ( 7.81 %)       |       0 (   0  %)        |      2048      |
++-------------------+-----------------+---------------+----------------------+---------------------+----------------+---------------------------+--------------------------+----------------+
+| Overall PHV Usage |  18 ( 8.04 %)   | 282 ( 6.88 %) |    246 ( 6.01 %)     |    36 ( 0.879%)     | 330 ( 8.06 %)  |       294 ( 7.18 %)       |       36 ( 0.879%)       |      4096      |
++-------------------+-----------------+---------------+----------------------+---------------------+----------------+---------------------------+--------------------------+----------------+
+
+
+Tagalong Collections:
++------------+-------+--------------------+---------------------+---------------------+---------------+----------------+
+|  Collection|  Gress|  8b Containers Used|  16b Containers Used|  32b Containers Used|      Bits Used|  Bits Allocated|
++------------+-------+--------------------+---------------------+---------------------+---------------+----------------+
+|           0|      I|         0 (   0  %)|          1 ( 16.7 %)|          1 (  25  %)|   48 ( 18.8 %)|    48 ( 18.8 %)|
+|           1|      E|         0 (   0  %)|          3 (  50  %)|          4 (  100 %)|  176 ( 68.8 %)|   208 ( 81.2 %)|
+|           2|       |         0 (   0  %)|          0 (   0  %)|          0 (   0  %)|    0 (   0  %)|     0 (   0  %)|
+|           3|       |         0 (   0  %)|          0 (   0  %)|          0 (   0  %)|    0 (   0  %)|     0 (   0  %)|
+|           4|       |         0 (   0  %)|          0 (   0  %)|          0 (   0  %)|    0 (   0  %)|     0 (   0  %)|
+|           5|       |         0 (   0  %)|          0 (   0  %)|          0 (   0  %)|    0 (   0  %)|     0 (   0  %)|
+|           6|       |         0 (   0  %)|          0 (   0  %)|          0 (   0  %)|    0 (   0  %)|     0 (   0  %)|
+|           7|       |         0 (   0  %)|          0 (   0  %)|          0 (   0  %)|    0 (   0  %)|     0 (   0  %)|
++------------+-------+--------------------+---------------------+---------------------+---------------+----------------+
+|       Total|       |         0 (   0  %)|          4 ( 8.33 %)|          5 ( 15.6 %)|  224 ( 10.9 %)|   256 ( 12.5 %)|
++------------+-------+--------------------+---------------------+---------------------+---------------+----------------+
+
+
+

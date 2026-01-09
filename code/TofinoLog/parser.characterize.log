@@ -1,0 +1,45 @@
+Parser Characterization Report:
+Number of states on ingress: 4
+
+Number of matches on ingress: 6
+
+Longest path (3 states) on ingress:
+    $entry_point
+    start
+    parse_cpu_metadata
+
+Timing is met for min-sized packet (73 B) running at 100 Gbps
+
+Extractor usage:
++--------------------+--------+-------+--------+--------+------------------+-------+
+|State               |Match   |8-bit  |16-bit  |32-bit  |Total Extractors  |Other  |
++--------------------+--------+-------+--------+--------+------------------+-------+
+|$entry_point        |*       |0      |0       |0       |0                 |       |
+|start               |0x080a  |1      |3       |2       |6                 |       |
+|-                   |0x88cc  |1      |3       |2       |6                 |       |
+|-                   |0x****  |1      |3       |2       |6                 |       |
+|parse_cpu_metadata  |*       |2      |2       |1       |5                 |       |
+|parse_lldp          |*       |1      |1       |1       |3                 |       |
++--------------------+--------+-------+--------+--------+------------------+-------+
+Number of states on egress: 4
+
+Number of matches on egress: 6
+
+Longest path (3 states) on egress:
+    $entry_point
+    start
+    parse_cpu_metadata
+
+Timing is met for min-sized packet (73 B) running at 100 Gbps
+
+Extractor usage:
++--------------------+--------+-------+--------+--------+------------------+-------+
+|State               |Match   |8-bit  |16-bit  |32-bit  |Total Extractors  |Other  |
++--------------------+--------+-------+--------+--------+------------------+-------+
+|$entry_point        |*       |0      |0       |0       |0                 |       |
+|start               |0x080a  |1      |3       |2       |6                 |       |
+|-                   |0x88cc  |1      |3       |2       |6                 |       |
+|-                   |0x****  |1      |3       |2       |6                 |       |
+|parse_cpu_metadata  |*       |2      |0       |2       |4                 |       |
+|parse_lldp          |*       |1      |1       |1       |3                 |       |
++--------------------+--------+-------+--------+--------+------------------+-------+

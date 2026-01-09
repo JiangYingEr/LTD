@@ -1,0 +1,30 @@
+Table allocation done 1 time(s), state = INITIAL
+Number of stages in table allocation: 5
+  Number of stages for ingress table allocation: 5
+  Number of stages for egress table allocation: 2
+Critical path length through the table dependency graph: 3
+Number of tables allocated: 13
++-------+---------------------------------+
+|Stage  |Table Name                       |
++-------+---------------------------------+
+|0      |SwitchIngress.tb_init_switch_id  |
+|0      |tbl_lldpd389                     |
+|1      |SwitchIngress.tb_check_link      |
+|1      |tbl_lldpd293                     |
+|1      |tbl_lldpd390                     |
+|1      |cond-12                          |
+|1      |SwitchIngress.broadcast          |
+|1      |tbl_lldpd317                     |
+|2      |tbl_lldpd298                     |
+|2      |tbl_lldpd303                     |
+|2      |tbl_lldpd308                     |
+|3      |SwitchIngress.shift_c            |
+|4      |tbl_lldpd313                     |
+|1      |cond-8                           |
+|1      |cond-13                          |
+|1      |cond-9                           |
+|2      |cond-10                          |
+|2      |cond-11                          |
+|0      |cond-14                          |
++-------+---------------------------------+
+

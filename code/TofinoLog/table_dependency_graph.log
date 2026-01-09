@@ -1,0 +1,799 @@
+FindDependencyGraph : After Instruction Selection
+ingress: [2069931] 0
+  tb_init_switch_id_0
+  cond-8(ingress::hdr.lldp.$valid == 1; => $true, 1 => $false)
+    $true: [2070030] 0 00 000
+      tb_check_link_0
+      cond-9(ingress::ig_intr_md.ingress_port[8:5] == 0; => $true, 1 => $false)
+        $true: [2070198]
+          tbl_lldpd293
+        $false: [2070516]
+          cond-10(ingress::ig_intr_md.ingress_port[8:6] == 0; => $true, 1 => $false)
+            $true: [2070277]
+              tbl_lldpd298
+            $false: [2070514]
+              cond-11(ingress::ig_intr_md.ingress_port[8:5] < 3; => $true, 1 => $false)
+                $true: [2070359]
+                  tbl_lldpd303
+                $false: [2070435]
+                  tbl_lldpd308
+      shift_c_0
+      tbl_lldpd313
+        stateful SwitchIngress.active_ports    4
+    $false: [2081396]
+      cond-12(ingress::hdr.cpu_metadata.$valid == 1; => $true, 1 => $false)
+        $true: [2081394]
+          cond-13(ingress::hdr.cpu_metadata.fromCpu == 1; => $true, 1 => $false)
+            $true: [2081203] 0
+              tbl_lldpd317
+              broadcast_0
+egress: [2085651]
+  cond-14(egress::hdr.cpu_metadata.$valid == 1 && egress::hdr.cpu_metadata.fromCpu == 1; => $true, 1 => $false)
+    $true: [2085656] 0
+      tbl_lldpd389
+      tbl_lldpd390
+
+DepStagesThruDomFrontier postorder : tb_init_switch_id_0
+DepStagesThruDomFrontier postorder : tb_check_link_0
+DepStagesThruDomFrontier postorder : tbl_lldpd293
+DepStagesThruDomFrontier postorder : tbl_lldpd298
+DepStagesThruDomFrontier postorder : tbl_lldpd303
+DepStagesThruDomFrontier postorder : tbl_lldpd308
+DepStagesThruDomFrontier postorder : cond-11
+DepStagesThruDomFrontier postorder : cond-10
+DepStagesThruDomFrontier postorder : cond-9
+DepStagesThruDomFrontier postorder : shift_c_0
+DepStagesThruDomFrontier postorder : tbl_lldpd313
+DepStagesThruDomFrontier postorder : tbl_lldpd317
+DepStagesThruDomFrontier postorder : broadcast_0
+DepStagesThruDomFrontier postorder : cond-13
+DepStagesThruDomFrontier postorder : cond-12
+DepStagesThruDomFrontier postorder : cond-8
+DepStagesThruDomFrontier postorder : tbl_lldpd389
+DepStagesThruDomFrontier postorder : tbl_lldpd390
+DepStagesThruDomFrontier postorder : cond-14
+    Maximum stage number according to dependences: 
+      INGRESS: 2
+      EGRESS: 1
+GRAPH
+    cond-8 -- CONTROL_COND_TRUE --> tb_check_link_0
+    cond-8 -- CONTROL_COND_TRUE --> cond-9
+    cond-8 -- CONTROL_COND_TRUE --> shift_c_0
+    cond-8 -- CONTROL_COND_TRUE --> tbl_lldpd313
+    cond-9 -- CONTROL_COND_TRUE --> tbl_lldpd293
+    cond-9 -- CONTROL_COND_FALSE --> cond-10
+    cond-10 -- CONTROL_COND_TRUE --> tbl_lldpd298
+    cond-10 -- CONTROL_COND_FALSE --> cond-11
+    cond-11 -- CONTROL_COND_TRUE --> tbl_lldpd303
+    cond-11 -- CONTROL_COND_FALSE --> tbl_lldpd308
+    cond-8 -- CONTROL_COND_FALSE --> cond-12
+    cond-12 -- CONTROL_COND_TRUE --> cond-13
+    cond-13 -- CONTROL_COND_TRUE --> tbl_lldpd317
+    cond-13 -- CONTROL_COND_TRUE --> broadcast_0
+    cond-14 -- CONTROL_COND_TRUE --> tbl_lldpd389
+    cond-14 -- CONTROL_COND_TRUE --> tbl_lldpd390
+    tb_init_switch_id_0 -- ACTION_READ --> tb_check_link_0
+    tbl_lldpd293 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd298 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd303 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd308 -- IXBAR_READ --> shift_c_0
+    shift_c_0 -- IXBAR_READ --> tbl_lldpd313
+    tbl_lldpd293 -- IXBAR_READ --> tbl_lldpd313
+    tbl_lldpd298 -- IXBAR_READ --> tbl_lldpd313
+    tbl_lldpd303 -- IXBAR_READ --> tbl_lldpd313
+    tbl_lldpd308 -- IXBAR_READ --> tbl_lldpd313
+    cond-8 -- ANTI_ACTION_READ --> tbl_lldpd317
+    tb_init_switch_id_0 -- ACTION_READ --> tbl_lldpd317
+    cond-14 -- ANTI_ACTION_READ --> tbl_lldpd389
+    tbl_lldpd389 -- OUTPUT --> tbl_lldpd390
+    shift_c_0 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tbl_lldpd389 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd390
+    tbl_lldpd293 -- ANTI_NEXT_TABLE_DATA --> shift_c_0
+    tbl_lldpd293 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tbl_lldpd298 -- ANTI_NEXT_TABLE_DATA --> shift_c_0
+    tbl_lldpd298 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tbl_lldpd303 -- ANTI_NEXT_TABLE_DATA --> shift_c_0
+    tbl_lldpd303 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tbl_lldpd308 -- ANTI_NEXT_TABLE_DATA --> shift_c_0
+    tbl_lldpd308 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tb_init_switch_id_0 -- ANTI_NEXT_TABLE_DATA --> cond-8
+MIN STAGE INFO
+    Each table also indicates its dependency chain length
+    First number refers to a dependency chain from which each tables are not split
+    Second number refers to a dependency chain from which each tables are split as on  last allocation pass
+ Stage #0
+     cond-8 2 2
+	- Edge ANTI_NEXT_TABLE_DATA tb_init_switch_id_0
+     cond-9 2 2
+	- Edge CONTROL_COND_TRUE cond-8
+     tbl_lldpd293 2 2
+	- Edge CONTROL_COND_TRUE cond-9
+     cond-10 2 2
+	- Edge CONTROL_COND_FALSE cond-9
+     tbl_lldpd298 2 2
+	- Edge CONTROL_COND_TRUE cond-10
+     cond-11 2 2
+	- Edge CONTROL_COND_FALSE cond-10
+     tbl_lldpd303 2 2
+	- Edge CONTROL_COND_TRUE cond-11
+     tbl_lldpd308 2 2
+	- Edge CONTROL_COND_FALSE cond-11
+     cond-12 0 0
+	- Edge CONTROL_COND_FALSE cond-8
+     cond-13 0 0
+	- Edge CONTROL_COND_TRUE cond-12
+     broadcast_0 0 0
+	- Edge CONTROL_COND_TRUE cond-13
+     cond-14 1 1
+     tbl_lldpd389 1 1
+	- Edge CONTROL_COND_TRUE cond-14
+	- Edge ANTI_ACTION_READ cond-14
+     tb_init_switch_id_0 2 2
+ Stage #1
+     tb_check_link_0 0 0
+	- Edge ACTION_READ tb_init_switch_id_0
+     shift_c_0 1 1
+	- Edge IXBAR_READ tbl_lldpd293
+	- Edge IXBAR_READ tbl_lldpd298
+	- Edge IXBAR_READ tbl_lldpd303
+	- Edge IXBAR_READ tbl_lldpd308
+     tbl_lldpd317 0 0
+	- Edge ACTION_READ tb_init_switch_id_0
+     tbl_lldpd390 0 0
+	- Edge OUTPUT tbl_lldpd389
+ Stage #2
+     tbl_lldpd313 0 0
+	- Edge IXBAR_READ shift_c_0
+
+FindDependencyGraph : Just Before PHV allocation
+ingress: [2069931] 0
+  tb_init_switch_id_0
+  cond-8(ingress::hdr.lldp.$valid == 1; => $true, 1 => $false)
+    $true: [2070030] 0 00 000
+      tb_check_link_0
+      cond-9(ingress::ig_intr_md.ingress_port[8:5] == 0; => $true, 1 => $false)
+        $true: [2070198]
+          tbl_lldpd293
+        $false: [2070516]
+          cond-10(ingress::ig_intr_md.ingress_port[8:6] == 0; => $true, 1 => $false)
+            $true: [2070277]
+              tbl_lldpd298
+            $false: [2070514]
+              cond-11(ingress::ig_intr_md.ingress_port[8:5] < 3; => $true, 1 => $false)
+                $true: [2070359]
+                  tbl_lldpd303
+                $false: [2070435]
+                  tbl_lldpd308
+      shift_c_0
+      tbl_lldpd313
+        stateful SwitchIngress.active_ports    4
+    $false: [2081396]
+      cond-12(ingress::hdr.cpu_metadata.$valid == 1; => $true, 1 => $false)
+        $true: [2081394]
+          cond-13(ingress::hdr.cpu_metadata.fromCpu == 1; => $true, 1 => $false)
+            $true: [2081203] 0
+              tbl_lldpd317
+              broadcast_0
+egress: [2085651]
+  cond-14(egress::hdr.cpu_metadata.$valid == 1 && egress::hdr.cpu_metadata.fromCpu == 1; => $true, 1 => $false)
+    $true: [2085656] 0
+      tbl_lldpd389
+      tbl_lldpd390
+
+DepStagesThruDomFrontier postorder : tb_init_switch_id_0
+DepStagesThruDomFrontier postorder : tb_check_link_0
+DepStagesThruDomFrontier postorder : tbl_lldpd293
+DepStagesThruDomFrontier postorder : tbl_lldpd298
+DepStagesThruDomFrontier postorder : tbl_lldpd303
+DepStagesThruDomFrontier postorder : tbl_lldpd308
+DepStagesThruDomFrontier postorder : cond-11
+DepStagesThruDomFrontier postorder : cond-10
+DepStagesThruDomFrontier postorder : cond-9
+DepStagesThruDomFrontier postorder : shift_c_0
+DepStagesThruDomFrontier postorder : tbl_lldpd313
+DepStagesThruDomFrontier postorder : tbl_lldpd317
+DepStagesThruDomFrontier postorder : broadcast_0
+DepStagesThruDomFrontier postorder : cond-13
+DepStagesThruDomFrontier postorder : cond-12
+DepStagesThruDomFrontier postorder : cond-8
+DepStagesThruDomFrontier postorder : tbl_lldpd389
+DepStagesThruDomFrontier postorder : tbl_lldpd390
+DepStagesThruDomFrontier postorder : cond-14
+    Maximum stage number according to dependences: 
+      INGRESS: 2
+      EGRESS: 1
+GRAPH
+    cond-8 -- CONTROL_COND_TRUE --> tb_check_link_0
+    cond-8 -- CONTROL_COND_TRUE --> cond-9
+    cond-8 -- CONTROL_COND_TRUE --> shift_c_0
+    cond-8 -- CONTROL_COND_TRUE --> tbl_lldpd313
+    cond-9 -- CONTROL_COND_TRUE --> tbl_lldpd293
+    cond-9 -- CONTROL_COND_FALSE --> cond-10
+    cond-10 -- CONTROL_COND_TRUE --> tbl_lldpd298
+    cond-10 -- CONTROL_COND_FALSE --> cond-11
+    cond-11 -- CONTROL_COND_TRUE --> tbl_lldpd303
+    cond-11 -- CONTROL_COND_FALSE --> tbl_lldpd308
+    cond-8 -- CONTROL_COND_FALSE --> cond-12
+    cond-12 -- CONTROL_COND_TRUE --> cond-13
+    cond-13 -- CONTROL_COND_TRUE --> tbl_lldpd317
+    cond-13 -- CONTROL_COND_TRUE --> broadcast_0
+    cond-14 -- CONTROL_COND_TRUE --> tbl_lldpd389
+    cond-14 -- CONTROL_COND_TRUE --> tbl_lldpd390
+    tb_init_switch_id_0 -- ACTION_READ --> tb_check_link_0
+    tbl_lldpd293 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd298 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd303 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd308 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd298 -- IXBAR_READ --> tbl_lldpd313
+    tbl_lldpd303 -- IXBAR_READ --> tbl_lldpd313
+    tbl_lldpd308 -- IXBAR_READ --> tbl_lldpd313
+    shift_c_0 -- IXBAR_READ --> tbl_lldpd313
+    cond-8 -- ANTI_ACTION_READ --> tbl_lldpd317
+    tb_init_switch_id_0 -- ACTION_READ --> tbl_lldpd317
+    cond-14 -- ANTI_ACTION_READ --> tbl_lldpd389
+    tbl_lldpd389 -- OUTPUT --> tbl_lldpd390
+    shift_c_0 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tbl_lldpd389 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd390
+    tbl_lldpd293 -- ANTI_NEXT_TABLE_DATA --> shift_c_0
+    tbl_lldpd298 -- ANTI_NEXT_TABLE_DATA --> shift_c_0
+    tbl_lldpd298 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tbl_lldpd303 -- ANTI_NEXT_TABLE_DATA --> shift_c_0
+    tbl_lldpd303 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tbl_lldpd308 -- ANTI_NEXT_TABLE_DATA --> shift_c_0
+    tbl_lldpd308 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tb_init_switch_id_0 -- ANTI_NEXT_TABLE_DATA --> cond-8
+MIN STAGE INFO
+    Each table also indicates its dependency chain length
+    First number refers to a dependency chain from which each tables are not split
+    Second number refers to a dependency chain from which each tables are split as on  last allocation pass
+ Stage #0
+     cond-8 2 2
+	- Edge ANTI_NEXT_TABLE_DATA tb_init_switch_id_0
+     cond-9 2 2
+	- Edge CONTROL_COND_TRUE cond-8
+     tbl_lldpd293 2 2
+	- Edge CONTROL_COND_TRUE cond-9
+     cond-10 2 2
+	- Edge CONTROL_COND_FALSE cond-9
+     tbl_lldpd298 2 2
+	- Edge CONTROL_COND_TRUE cond-10
+     cond-11 2 2
+	- Edge CONTROL_COND_FALSE cond-10
+     tbl_lldpd303 2 2
+	- Edge CONTROL_COND_TRUE cond-11
+     tbl_lldpd308 2 2
+	- Edge CONTROL_COND_FALSE cond-11
+     cond-12 0 0
+	- Edge CONTROL_COND_FALSE cond-8
+     cond-13 0 0
+	- Edge CONTROL_COND_TRUE cond-12
+     broadcast_0 0 0
+	- Edge CONTROL_COND_TRUE cond-13
+     cond-14 1 1
+     tbl_lldpd389 1 1
+	- Edge CONTROL_COND_TRUE cond-14
+	- Edge ANTI_ACTION_READ cond-14
+     tb_init_switch_id_0 2 2
+ Stage #1
+     tb_check_link_0 0 0
+	- Edge ACTION_READ tb_init_switch_id_0
+     shift_c_0 1 1
+	- Edge IXBAR_READ tbl_lldpd293
+	- Edge IXBAR_READ tbl_lldpd298
+	- Edge IXBAR_READ tbl_lldpd303
+	- Edge IXBAR_READ tbl_lldpd308
+     tbl_lldpd317 0 0
+	- Edge ACTION_READ tb_init_switch_id_0
+     tbl_lldpd390 0 0
+	- Edge OUTPUT tbl_lldpd389
+ Stage #2
+     tbl_lldpd313 0 0
+	- Edge IXBAR_READ shift_c_0
+
+ingress: [2069931] 1
+  tb_init_switch_id_0{ E 0+1, 4 0K }
+  cond-8(ingress::hdr.lldp.$valid == 1; => $true, 1 => $false)
+    $true: [2070030] 0 01 011
+      tb_check_link_0{ E 47+1, 2 0K }
+      cond-9(ingress::ig_intr_md.ingress_port[8:5] == 0; => $true, 1 => $false)
+        $true: [2070198]
+          tbl_lldpd293
+        $false: [2070516]
+          cond-10(ingress::ig_intr_md.ingress_port[8:6] == 0; => $true, 1 => $false)
+            $true: [2070277]
+              tbl_lldpd298
+            $false: [2070514]
+              cond-11(ingress::ig_intr_md.ingress_port[8:5] in 0x7; => $true, 1 => $false)
+                $true: [2070359]
+                  tbl_lldpd303
+                $false: [2070435]
+                  tbl_lldpd308
+      shift_c_0{ E -4+6, 4 0K }
+      tbl_lldpd313
+        stateful SwitchIngress.active_ports    4
+    $false: [2081396]
+      cond-12(ingress::hdr.cpu_metadata.$valid == 1; => $true, 1 => $false)
+        $true: [2081394]
+          cond-13(ingress::hdr.cpu_metadata.fromCpu == 1; => $true, 1 => $false)
+            $true: [2081203] 0
+              tbl_lldpd317
+              broadcast_0{ E -1+1, 2 0K }
+egress: [2085651]
+  cond-14(egress::hdr.cpu_metadata.$valid == 1 && egress::hdr.cpu_metadata.fromCpu == 1; => $true, 1 => $false)
+    $true: [2085656] 1
+      tbl_lldpd389
+      tbl_lldpd390
+
+DepStagesThruDomFrontier postorder : tb_init_switch_id_0
+DepStagesThruDomFrontier postorder : tb_check_link_0
+DepStagesThruDomFrontier postorder : tbl_lldpd293
+DepStagesThruDomFrontier postorder : tbl_lldpd298
+DepStagesThruDomFrontier postorder : tbl_lldpd303
+DepStagesThruDomFrontier postorder : tbl_lldpd308
+DepStagesThruDomFrontier postorder : cond-11
+DepStagesThruDomFrontier postorder : cond-10
+DepStagesThruDomFrontier postorder : cond-9
+DepStagesThruDomFrontier postorder : shift_c_0
+DepStagesThruDomFrontier postorder : tbl_lldpd313
+DepStagesThruDomFrontier postorder : tbl_lldpd317
+DepStagesThruDomFrontier postorder : broadcast_0
+DepStagesThruDomFrontier postorder : cond-13
+DepStagesThruDomFrontier postorder : cond-12
+DepStagesThruDomFrontier postorder : cond-8
+DepStagesThruDomFrontier postorder : tbl_lldpd389
+DepStagesThruDomFrontier postorder : tbl_lldpd390
+DepStagesThruDomFrontier postorder : cond-14
+    Maximum stage number according to dependences: 
+      INGRESS: 2
+      EGRESS: 1
+GRAPH
+    cond-8 -- CONTROL_COND_TRUE --> tb_check_link_0
+    cond-8 -- CONTROL_COND_TRUE --> cond-9
+    cond-8 -- CONTROL_COND_TRUE --> shift_c_0
+    cond-8 -- CONTROL_COND_TRUE --> tbl_lldpd313
+    cond-9 -- CONTROL_COND_TRUE --> tbl_lldpd293
+    cond-9 -- CONTROL_COND_FALSE --> cond-10
+    cond-10 -- CONTROL_COND_TRUE --> tbl_lldpd298
+    cond-10 -- CONTROL_COND_FALSE --> cond-11
+    cond-11 -- CONTROL_COND_TRUE --> tbl_lldpd303
+    cond-11 -- CONTROL_COND_FALSE --> tbl_lldpd308
+    cond-8 -- CONTROL_COND_FALSE --> cond-12
+    cond-12 -- CONTROL_COND_TRUE --> cond-13
+    cond-13 -- CONTROL_COND_TRUE --> tbl_lldpd317
+    cond-13 -- CONTROL_COND_TRUE --> broadcast_0
+    cond-14 -- CONTROL_COND_TRUE --> tbl_lldpd389
+    cond-14 -- CONTROL_COND_TRUE --> tbl_lldpd390
+    tb_init_switch_id_0 -- ACTION_READ --> tb_check_link_0
+    tbl_lldpd293 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd298 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd303 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd308 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd298 -- IXBAR_READ --> tbl_lldpd313
+    tbl_lldpd303 -- IXBAR_READ --> tbl_lldpd313
+    tbl_lldpd308 -- IXBAR_READ --> tbl_lldpd313
+    shift_c_0 -- IXBAR_READ --> tbl_lldpd313
+    cond-8 -- ANTI_ACTION_READ --> tbl_lldpd317
+    tb_init_switch_id_0 -- ACTION_READ --> tbl_lldpd317
+    cond-14 -- ANTI_ACTION_READ --> tbl_lldpd389
+    tbl_lldpd389 -- OUTPUT --> tbl_lldpd390
+    shift_c_0 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tbl_lldpd389 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd390
+    tbl_lldpd293 -- ANTI_NEXT_TABLE_DATA --> shift_c_0
+    tbl_lldpd298 -- ANTI_NEXT_TABLE_DATA --> shift_c_0
+    tbl_lldpd298 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tbl_lldpd303 -- ANTI_NEXT_TABLE_DATA --> shift_c_0
+    tbl_lldpd303 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tbl_lldpd308 -- ANTI_NEXT_TABLE_DATA --> shift_c_0
+    tbl_lldpd308 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tb_init_switch_id_0 -- ANTI_NEXT_TABLE_DATA --> cond-8
+MIN STAGE INFO
+    Each table also indicates its dependency chain length
+    First number refers to a dependency chain from which each tables are not split
+    Second number refers to a dependency chain from which each tables are split as on  last allocation pass
+ Stage #0
+     cond-8 2 2
+	- Edge ANTI_NEXT_TABLE_DATA tb_init_switch_id_0
+     cond-9 2 2
+	- Edge CONTROL_COND_TRUE cond-8
+     tbl_lldpd293 2 2
+	- Edge CONTROL_COND_TRUE cond-9
+     cond-10 2 2
+	- Edge CONTROL_COND_FALSE cond-9
+     tbl_lldpd298 2 2
+	- Edge CONTROL_COND_TRUE cond-10
+     cond-11 2 2
+	- Edge CONTROL_COND_FALSE cond-10
+     tbl_lldpd303 2 2
+	- Edge CONTROL_COND_TRUE cond-11
+     tbl_lldpd308 2 2
+	- Edge CONTROL_COND_FALSE cond-11
+     cond-12 0 0
+	- Edge CONTROL_COND_FALSE cond-8
+     cond-13 0 0
+	- Edge CONTROL_COND_TRUE cond-12
+     broadcast_0 0 0
+	- Edge CONTROL_COND_TRUE cond-13
+     cond-14 1 1
+     tbl_lldpd389 1 1
+	- Edge CONTROL_COND_TRUE cond-14
+	- Edge ANTI_ACTION_READ cond-14
+     tb_init_switch_id_0 2 2
+ Stage #1
+     tb_check_link_0 0 0
+	- Edge ACTION_READ tb_init_switch_id_0
+     shift_c_0 1 1
+	- Edge IXBAR_READ tbl_lldpd293
+	- Edge IXBAR_READ tbl_lldpd298
+	- Edge IXBAR_READ tbl_lldpd303
+	- Edge IXBAR_READ tbl_lldpd308
+     tbl_lldpd317 0 0
+	- Edge ACTION_READ tb_init_switch_id_0
+     tbl_lldpd390 0 0
+	- Edge OUTPUT tbl_lldpd389
+ Stage #2
+     tbl_lldpd313 0 0
+	- Edge IXBAR_READ shift_c_0
+
+FindDependencyGraph : Before Table Placement
+ingress: [2069931] 1
+  tb_init_switch_id_0{ E 0+1, 4 0K }
+  cond-8(ingress::hdr.lldp.$valid == 1; => $true, 1 => $false)
+    $true: [2070030] 0 01 011
+      tb_check_link_0{ E 47+1, 2 0K }
+      cond-9(ingress::ig_intr_md.ingress_port[8:5] == 0; => $true, 1 => $false)
+        $true: [2070198]
+          tbl_lldpd293
+        $false: [2070516]
+          cond-10(ingress::ig_intr_md.ingress_port[8:6] == 0; => $true, 1 => $false)
+            $true: [2070277]
+              tbl_lldpd298
+            $false: [2070514]
+              cond-11(ingress::ig_intr_md.ingress_port[8:5] in 0x7; => $true, 1 => $false)
+                $true: [2070359]
+                  tbl_lldpd303
+                $false: [2070435]
+                  tbl_lldpd308
+      shift_c_0{ E -4+6, 4 0K }
+      tbl_lldpd313
+        stateful SwitchIngress.active_ports    4
+    $false: [2081396]
+      cond-12(ingress::hdr.cpu_metadata.$valid == 1; => $true, 1 => $false)
+        $true: [2081394]
+          cond-13(ingress::hdr.cpu_metadata.fromCpu == 1; => $true, 1 => $false)
+            $true: [2081203] 0
+              tbl_lldpd317
+              broadcast_0{ E -1+1, 2 0K }
+egress: [2085651]
+  cond-14(egress::hdr.cpu_metadata.$valid == 1 && egress::hdr.cpu_metadata.fromCpu == 1; => $true, 1 => $false)
+    $true: [2085656] 1
+      tbl_lldpd389
+      tbl_lldpd390
+
+DepStagesThruDomFrontier postorder : tb_init_switch_id_0
+DepStagesThruDomFrontier postorder : tb_check_link_0
+DepStagesThruDomFrontier postorder : tbl_lldpd293
+DepStagesThruDomFrontier postorder : tbl_lldpd298
+DepStagesThruDomFrontier postorder : tbl_lldpd303
+DepStagesThruDomFrontier postorder : tbl_lldpd308
+DepStagesThruDomFrontier postorder : cond-11
+DepStagesThruDomFrontier postorder : cond-10
+DepStagesThruDomFrontier postorder : cond-9
+DepStagesThruDomFrontier postorder : shift_c_0
+DepStagesThruDomFrontier postorder : tbl_lldpd313
+DepStagesThruDomFrontier postorder : tbl_lldpd317
+DepStagesThruDomFrontier postorder : broadcast_0
+DepStagesThruDomFrontier postorder : cond-13
+DepStagesThruDomFrontier postorder : cond-12
+DepStagesThruDomFrontier postorder : cond-8
+DepStagesThruDomFrontier postorder : tbl_lldpd389
+DepStagesThruDomFrontier postorder : tbl_lldpd390
+DepStagesThruDomFrontier postorder : cond-14
+    Maximum stage number according to dependences: 
+      INGRESS: 2
+      EGRESS: 1
+GRAPH
+    cond-8 -- CONTROL_COND_TRUE --> tb_check_link_0
+    cond-8 -- CONTROL_COND_TRUE --> cond-9
+    cond-8 -- CONTROL_COND_TRUE --> shift_c_0
+    cond-8 -- CONTROL_COND_TRUE --> tbl_lldpd313
+    cond-9 -- CONTROL_COND_TRUE --> tbl_lldpd293
+    cond-9 -- CONTROL_COND_FALSE --> cond-10
+    cond-10 -- CONTROL_COND_TRUE --> tbl_lldpd298
+    cond-10 -- CONTROL_COND_FALSE --> cond-11
+    cond-11 -- CONTROL_COND_TRUE --> tbl_lldpd303
+    cond-11 -- CONTROL_COND_FALSE --> tbl_lldpd308
+    cond-8 -- CONTROL_COND_FALSE --> cond-12
+    cond-12 -- CONTROL_COND_TRUE --> cond-13
+    cond-13 -- CONTROL_COND_TRUE --> tbl_lldpd317
+    cond-13 -- CONTROL_COND_TRUE --> broadcast_0
+    cond-14 -- CONTROL_COND_TRUE --> tbl_lldpd389
+    cond-14 -- CONTROL_COND_TRUE --> tbl_lldpd390
+    tb_init_switch_id_0 -- ACTION_READ --> tb_check_link_0
+    tbl_lldpd293 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd298 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd303 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd308 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd298 -- IXBAR_READ --> tbl_lldpd313
+    tbl_lldpd303 -- IXBAR_READ --> tbl_lldpd313
+    tbl_lldpd308 -- IXBAR_READ --> tbl_lldpd313
+    shift_c_0 -- IXBAR_READ --> tbl_lldpd313
+    cond-8 -- ANTI_ACTION_READ --> tbl_lldpd317
+    tb_init_switch_id_0 -- ACTION_READ --> tbl_lldpd317
+    cond-14 -- ANTI_ACTION_READ --> tbl_lldpd389
+    tbl_lldpd389 -- OUTPUT --> tbl_lldpd390
+    shift_c_0 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tbl_lldpd389 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd390
+    tbl_lldpd293 -- ANTI_NEXT_TABLE_DATA --> shift_c_0
+    tbl_lldpd298 -- ANTI_NEXT_TABLE_DATA --> shift_c_0
+    tbl_lldpd298 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tbl_lldpd303 -- ANTI_NEXT_TABLE_DATA --> shift_c_0
+    tbl_lldpd303 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tbl_lldpd308 -- ANTI_NEXT_TABLE_DATA --> shift_c_0
+    tbl_lldpd308 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tb_init_switch_id_0 -- ANTI_NEXT_TABLE_DATA --> cond-8
+MIN STAGE INFO
+    Each table also indicates its dependency chain length
+    First number refers to a dependency chain from which each tables are not split
+    Second number refers to a dependency chain from which each tables are split as on  last allocation pass
+ Stage #0
+     cond-8 2 2
+	- Edge ANTI_NEXT_TABLE_DATA tb_init_switch_id_0
+     cond-9 2 2
+	- Edge CONTROL_COND_TRUE cond-8
+     tbl_lldpd293 2 2
+	- Edge CONTROL_COND_TRUE cond-9
+     cond-10 2 2
+	- Edge CONTROL_COND_FALSE cond-9
+     tbl_lldpd298 2 2
+	- Edge CONTROL_COND_TRUE cond-10
+     cond-11 2 2
+	- Edge CONTROL_COND_FALSE cond-10
+     tbl_lldpd303 2 2
+	- Edge CONTROL_COND_TRUE cond-11
+     tbl_lldpd308 2 2
+	- Edge CONTROL_COND_FALSE cond-11
+     cond-12 0 0
+	- Edge CONTROL_COND_FALSE cond-8
+     cond-13 0 0
+	- Edge CONTROL_COND_TRUE cond-12
+     broadcast_0 0 0
+	- Edge CONTROL_COND_TRUE cond-13
+     cond-14 1 1
+     tbl_lldpd389 1 1
+	- Edge CONTROL_COND_TRUE cond-14
+	- Edge ANTI_ACTION_READ cond-14
+     tb_init_switch_id_0 2 2
+ Stage #1
+     tb_check_link_0 0 0
+	- Edge ACTION_READ tb_init_switch_id_0
+     shift_c_0 1 1
+	- Edge IXBAR_READ tbl_lldpd293
+	- Edge IXBAR_READ tbl_lldpd298
+	- Edge IXBAR_READ tbl_lldpd303
+	- Edge IXBAR_READ tbl_lldpd308
+     tbl_lldpd317 0 0
+	- Edge ACTION_READ tb_init_switch_id_0
+     tbl_lldpd390 0 0
+	- Edge OUTPUT tbl_lldpd389
+ Stage #2
+     tbl_lldpd313 0 0
+	- Edge IXBAR_READ shift_c_0
+
+FindDependencyGraph : After Table Placement
+ingress: [2069931] 1
+  0: tb_init_switch_id_0{ E 0+33, 4 0K }
+  10: tb_check_link_0(ingress::hdr.lldp.$valid == 1;, 1 => $false){ GE 47+10, 2 [1x1 1K 1K 1K 1K] }
+    $false: [2081396]
+      13: cond-12(ingress::hdr.cpu_metadata.$valid == 1; => $true, 1 => $false)
+        $true: [2081394]
+          14: broadcast_0(ingress::hdr.cpu_metadata.fromCpu == 1;, 1 => $false){ GE -1+17, 2 [1x1 1K] }
+            $default: [2081203]
+              15: tbl_lldpd317{ E 0+32, 4 0K }
+            $false: [2199613]
+    $default: [2070030] 1 11
+      11: tbl_lldpd293(ingress::ig_intr_md.ingress_port[8:5] == 0;, 1 => $false)
+        $false: [2070516]
+          20: tbl_lldpd298(ingress::ig_intr_md.ingress_port[8:6] == 0;, 1 => $false){ GE 0+6, 2 0K }
+            $false: [2070514]
+              21: tbl_lldpd303(ingress::ig_intr_md.ingress_port[8:5] in 0x7;, 1 => $false)
+                $false: [2070435]
+                  22: tbl_lldpd308{ E 0+6, 2 0K }
+      30: shift_c_0{ E -4+38, 4 [1x1 1K] }
+      40: tbl_lldpd313
+        stateful SwitchIngress.active_ports 4   
+egress: [2085651]
+  1: tbl_lldpd389(egress::hdr.cpu_metadata.$valid == 1 && egress::hdr.cpu_metadata.fromCpu == 1;, 1 => $false)
+    $default: [2085656]
+      12: tbl_lldpd390
+    $false: [2200589]
+
+DepStagesThruDomFrontier postorder : tb_init_switch_id_0
+DepStagesThruDomFrontier postorder : tbl_lldpd317
+DepStagesThruDomFrontier postorder : broadcast_0
+DepStagesThruDomFrontier postorder : cond-12
+DepStagesThruDomFrontier postorder : tbl_lldpd308
+DepStagesThruDomFrontier postorder : tbl_lldpd303
+DepStagesThruDomFrontier postorder : tbl_lldpd298
+DepStagesThruDomFrontier postorder : tbl_lldpd293
+DepStagesThruDomFrontier postorder : shift_c_0
+DepStagesThruDomFrontier postorder : tbl_lldpd313
+DepStagesThruDomFrontier postorder : tb_check_link_0
+DepStagesThruDomFrontier postorder : tbl_lldpd390
+DepStagesThruDomFrontier postorder : tbl_lldpd389
+    Maximum stage number according to dependences: 
+      INGRESS: 3
+      EGRESS: 1
+GRAPH
+    tb_check_link_0 -- CONTROL_COND_FALSE --> cond-12
+    cond-12 -- CONTROL_COND_TRUE --> broadcast_0
+    broadcast_0 -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_lldpd317
+    tb_check_link_0 -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_lldpd293
+    tb_check_link_0 -- CONTROL_DEFAULT_NEXT_TABLE --> shift_c_0
+    tb_check_link_0 -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_lldpd313
+    tbl_lldpd293 -- CONTROL_COND_FALSE --> tbl_lldpd298
+    tbl_lldpd298 -- CONTROL_COND_FALSE --> tbl_lldpd303
+    tbl_lldpd303 -- CONTROL_COND_FALSE --> tbl_lldpd308
+    tbl_lldpd389 -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_lldpd390
+    tb_init_switch_id_0 -- ACTION_READ --> tb_check_link_0
+    tb_check_link_0 -- ANTI_ACTION_READ --> tbl_lldpd317
+    tb_init_switch_id_0 -- ACTION_READ --> tbl_lldpd317
+    tbl_lldpd293 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd298 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd303 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd308 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd298 -- IXBAR_READ --> tbl_lldpd313
+    tbl_lldpd303 -- IXBAR_READ --> tbl_lldpd313
+    tbl_lldpd308 -- IXBAR_READ --> tbl_lldpd313
+    shift_c_0 -- IXBAR_READ --> tbl_lldpd313
+    tbl_lldpd389 -- OUTPUT --> tbl_lldpd390
+    shift_c_0 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tbl_lldpd308 -- ANTI_NEXT_TABLE_DATA --> shift_c_0
+    tbl_lldpd308 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tb_init_switch_id_0 -- ANTI_NEXT_TABLE_DATA --> tb_check_link_0
+MIN STAGE INFO
+    Each table also indicates its dependency chain length
+    First number refers to a dependency chain from which each tables are not split
+    Second number refers to a dependency chain from which each tables are split as on  last allocation pass
+ Stage #0
+     tbl_lldpd389 1 1
+     tb_init_switch_id_0 3 3
+ Stage #1
+     tb_check_link_0 2 2
+	- Edge ACTION_READ tb_init_switch_id_0
+     cond-12 0 0
+	- Edge CONTROL_COND_FALSE tb_check_link_0
+     broadcast_0 0 0
+	- Edge CONTROL_COND_TRUE cond-12
+     tbl_lldpd317 0 0
+	- Edge CONTROL_DEFAULT_NEXT_TABLE broadcast_0
+	- Edge ANTI_ACTION_READ tb_check_link_0
+	- Edge ACTION_READ tb_init_switch_id_0
+     tbl_lldpd293 2 2
+	- Edge CONTROL_DEFAULT_NEXT_TABLE tb_check_link_0
+     tbl_lldpd298 2 2
+	- Edge CONTROL_COND_FALSE tbl_lldpd293
+     tbl_lldpd303 2 2
+	- Edge CONTROL_COND_FALSE tbl_lldpd298
+     tbl_lldpd308 2 2
+	- Edge CONTROL_COND_FALSE tbl_lldpd303
+     tbl_lldpd390 0 0
+	- Edge OUTPUT tbl_lldpd389
+ Stage #2
+     shift_c_0 1 1
+	- Edge IXBAR_READ tbl_lldpd293
+	- Edge IXBAR_READ tbl_lldpd298
+	- Edge IXBAR_READ tbl_lldpd303
+	- Edge IXBAR_READ tbl_lldpd308
+ Stage #3
+     tbl_lldpd313 0 0
+	- Edge IXBAR_READ shift_c_0
+
+FindDependencyGraph : Power Calculation
+ingress: [2069931] 1
+  0: tb_init_switch_id_0{ E 0+33, 4 0K }
+  10: tb_check_link_0(ingress::hdr.lldp.$valid == 1;, 1 => $false){ GE 47+10, 2 [1x1 1K 1K 1K 1K] }
+    $false: [2081396]
+      13: cond-12(ingress::hdr.cpu_metadata.$valid == 1; => $true, 1 => $false)
+        $true: [2081394]
+          14: broadcast_0(ingress::hdr.cpu_metadata.fromCpu == 1;, 1 => $false){ GE -1+17, 2 [1x1 1K] }
+            $default: [2081203]
+              15: tbl_lldpd317{ E 0+32, 4 0K }
+            $false: [2199613]
+    $default: [2070030] 1 11
+      11: tbl_lldpd293(ingress::ig_intr_md.ingress_port[8:5] == 0;, 1 => $false)
+        $false: [2070516]
+          20: tbl_lldpd298(ingress::ig_intr_md.ingress_port[8:6] == 0;, 1 => $false){ GE 0+6, 2 0K }
+            $false: [2070514]
+              21: tbl_lldpd303(ingress::ig_intr_md.ingress_port[8:5] in 0x7;, 1 => $false)
+                $false: [2070435]
+                  22: tbl_lldpd308{ E 0+6, 2 0K }
+      30: shift_c_0{ E -4+38, 4 [1x1 1K] }
+      40: tbl_lldpd313
+        stateful SwitchIngress.active_ports 4   
+egress: [2085651]
+  1: tbl_lldpd389(egress::hdr.cpu_metadata.$valid == 1 && egress::hdr.cpu_metadata.fromCpu == 1;, 1 => $false)
+    $default: [2085656]
+      12: tbl_lldpd390
+    $false: [2200589]
+
+DepStagesThruDomFrontier postorder : tb_init_switch_id_0
+DepStagesThruDomFrontier postorder : tbl_lldpd317
+DepStagesThruDomFrontier postorder : broadcast_0
+DepStagesThruDomFrontier postorder : cond-12
+DepStagesThruDomFrontier postorder : tbl_lldpd308
+DepStagesThruDomFrontier postorder : tbl_lldpd303
+DepStagesThruDomFrontier postorder : tbl_lldpd298
+DepStagesThruDomFrontier postorder : tbl_lldpd293
+DepStagesThruDomFrontier postorder : shift_c_0
+DepStagesThruDomFrontier postorder : tbl_lldpd313
+DepStagesThruDomFrontier postorder : tb_check_link_0
+DepStagesThruDomFrontier postorder : tbl_lldpd390
+DepStagesThruDomFrontier postorder : tbl_lldpd389
+    Maximum stage number according to dependences: 
+      INGRESS: 3
+      EGRESS: 1
+GRAPH
+    tb_check_link_0 -- CONTROL_COND_FALSE --> cond-12
+    cond-12 -- CONTROL_COND_TRUE --> broadcast_0
+    broadcast_0 -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_lldpd317
+    tb_check_link_0 -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_lldpd293
+    tb_check_link_0 -- CONTROL_DEFAULT_NEXT_TABLE --> shift_c_0
+    tb_check_link_0 -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_lldpd313
+    tbl_lldpd293 -- CONTROL_COND_FALSE --> tbl_lldpd298
+    tbl_lldpd298 -- CONTROL_COND_FALSE --> tbl_lldpd303
+    tbl_lldpd303 -- CONTROL_COND_FALSE --> tbl_lldpd308
+    tbl_lldpd389 -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_lldpd390
+    tb_init_switch_id_0 -- ACTION_READ --> tb_check_link_0
+    tb_check_link_0 -- ANTI_ACTION_READ --> tbl_lldpd317
+    tb_init_switch_id_0 -- ACTION_READ --> tbl_lldpd317
+    tbl_lldpd293 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd298 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd303 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd308 -- IXBAR_READ --> shift_c_0
+    tbl_lldpd298 -- IXBAR_READ --> tbl_lldpd313
+    tbl_lldpd303 -- IXBAR_READ --> tbl_lldpd313
+    tbl_lldpd308 -- IXBAR_READ --> tbl_lldpd313
+    shift_c_0 -- IXBAR_READ --> tbl_lldpd313
+    tbl_lldpd389 -- OUTPUT --> tbl_lldpd390
+    shift_c_0 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tbl_lldpd308 -- ANTI_NEXT_TABLE_DATA --> shift_c_0
+    tbl_lldpd308 -- ANTI_NEXT_TABLE_DATA --> tbl_lldpd313
+    tb_init_switch_id_0 -- ANTI_NEXT_TABLE_DATA --> tb_check_link_0
+MIN STAGE INFO
+    Each table also indicates its dependency chain length
+    First number refers to a dependency chain from which each tables are not split
+    Second number refers to a dependency chain from which each tables are split as on  last allocation pass
+ Stage #0
+     tbl_lldpd389 1 1
+     tb_init_switch_id_0 3 3
+ Stage #1
+     tb_check_link_0 2 2
+	- Edge ACTION_READ tb_init_switch_id_0
+     cond-12 0 0
+	- Edge CONTROL_COND_FALSE tb_check_link_0
+     broadcast_0 0 0
+	- Edge CONTROL_COND_TRUE cond-12
+     tbl_lldpd317 0 0
+	- Edge CONTROL_DEFAULT_NEXT_TABLE broadcast_0
+	- Edge ANTI_ACTION_READ tb_check_link_0
+	- Edge ACTION_READ tb_init_switch_id_0
+     tbl_lldpd293 2 2
+	- Edge CONTROL_DEFAULT_NEXT_TABLE tb_check_link_0
+     tbl_lldpd298 2 2
+	- Edge CONTROL_COND_FALSE tbl_lldpd293
+     tbl_lldpd303 2 2
+	- Edge CONTROL_COND_FALSE tbl_lldpd298
+     tbl_lldpd308 2 2
+	- Edge CONTROL_COND_FALSE tbl_lldpd303
+     tbl_lldpd390 0 0
+	- Edge OUTPUT tbl_lldpd389
+ Stage #2
+     shift_c_0 1 1
+	- Edge IXBAR_READ tbl_lldpd293
+	- Edge IXBAR_READ tbl_lldpd298
+	- Edge IXBAR_READ tbl_lldpd303
+	- Edge IXBAR_READ tbl_lldpd308
+ Stage #3
+     tbl_lldpd313 0 0
+	- Edge IXBAR_READ shift_c_0
+
