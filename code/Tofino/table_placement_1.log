@@ -1,0 +1,399 @@
+Table Placement ignores container conflicts? 0
+table placement starting pipe
+ingress: [2069931] 1
+  tb_init_switch_id_0{ E 0+1, 4 0K }
+  cond-8(ingress::hdr.lldp.$valid == 1; => $true, 1 => $false)
+    $true: [2070030] 0 01 011
+      tb_check_link_0{ E 47+1, 2 0K }
+      cond-9(ingress::ig_intr_md.ingress_port[8:5] == 0; => $true, 1 => $false)
+        $true: [2070198]
+          tbl_lldpd293
+        $false: [2070516]
+          cond-10(ingress::ig_intr_md.ingress_port[8:6] == 0; => $true, 1 => $false)
+            $true: [2070277]
+              tbl_lldpd298
+            $false: [2070514]
+              cond-11(ingress::ig_intr_md.ingress_port[8:5] in 0x7; => $true, 1 => $false)
+                $true: [2070359]
+                  tbl_lldpd303
+                $false: [2070435]
+                  tbl_lldpd308
+      shift_c_0{ E -4+6, 4 0K }
+      tbl_lldpd313
+        stateful SwitchIngress.active_ports    4
+    $false: [2081396]
+      cond-12(ingress::hdr.cpu_metadata.$valid == 1; => $true, 1 => $false)
+        $true: [2081394]
+          cond-13(ingress::hdr.cpu_metadata.fromCpu == 1; => $true, 1 => $false)
+            $true: [2081203] 0
+              tbl_lldpd317
+              broadcast_0{ E -1+1, 2 0K }
+egress: [2085651]
+  cond-14(egress::hdr.cpu_metadata.$valid == 1 && egress::hdr.cpu_metadata.fromCpu == 1; => $true, 1 => $false)
+    $true: [2085656] 1
+      tbl_lldpd389
+      tbl_lldpd390
+
+stage 0, work: [ 2069931, 2085651 ], partly placed 0, placed 0
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tb_init_switch_id_0
+  Group table: cond-8
+tb_init_switch_id_0 is not a gateway! Aborting search for merge choices
+try_place_table(tb_init_switch_id_0, stage=0)
+  Initial stage is 0, initial entries is 512
+  Selected stage: 0    Furthest stage: 0
+  try_place_table returning 512 of tb_init_switch_id_0 in stage 0
+    Pl vector: [ tb_init_switch_id_0 ]
+  - skipping cond-8 because it depends on tb_init_switch_id_0
+    - removing tb_check_link_0 from merge list because it depends on tb_init_switch_id_0
+    - skipping gateway cond-8 until mergeable tables are available
+  Group table: cond-14
+try_place_table(cond-14, stage=0)
+  Merging with match table tbl_lldpd389
+  Initial stage is 0, initial entries is 1
+  Selected stage: 0    Furthest stage: 0
+  try_place_table returning 1 of tbl_lldpd389 in stage 0
+    Pl vector: [ tbl_lldpd389 ]
+found 2 tables that could be placed: [ tb_init_switch_id_0, tbl_lldpd389 ]
+Initial best is first table seen: tb_init_switch_id_0
+For trial t : tbl_lldpd389 with best: tb_init_switch_id_0
+    Keeping best tb_init_switch_id_0 for reason: longer downward prop control-included dependence tail chain
+placing 512 entries of tb_init_switch_id_0 in stage 0(0) FormatType(02)
+stage 0, work: [ 2069931, 2085651 ], partly placed 0, placed 1
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tb_init_switch_id_0
+  Group table: cond-8
+    - skipping tb_init_switch_id_0 as its already done
+try_place_table(cond-8, stage=0)
+  Merging with match table tb_check_link_0
+  - dependency between tb_init_switch_id_0 and table advances stage
+  Initial stage is 1, initial entries is 512
+  Selected stage: 1    Furthest stage: 1
+  try_place_table returning 4096 of tb_check_link_0 in stage 1
+    Pl vector: [ tb_check_link_0 ]
+  Group table: cond-14
+try_place_table(cond-14, stage=0)
+  Merging with match table tbl_lldpd389
+  Initial stage is 0, initial entries is 1
+  Selected stage: 0    Furthest stage: 1
+  try_place_table returning 1 of tbl_lldpd389 in stage 0
+    Pl vector: [ tbl_lldpd389 ]
+found 2 tables that could be placed: [ tb_check_link_0, tbl_lldpd389 ]
+Initial best is first table seen: tb_check_link_0
+For trial t : tbl_lldpd389 with best: tb_check_link_0
+    Updating best to tbl_lldpd389 from tb_check_link_0 for reason: earlier stage calculated
+placing 1 entries of tbl_lldpd389 (with gw cond-14) in stage 0(1) FormatType(02)
+stage 0, work: [ 2069931, 2085656 ], partly placed 0, placed 2
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tb_init_switch_id_0
+  Group table: cond-8
+    - skipping tb_init_switch_id_0 as its already done
+try_place_table(cond-8, stage=0)
+  Merging with match table tb_check_link_0
+  - dependency between tb_init_switch_id_0 and table advances stage
+  Initial stage is 1, initial entries is 512
+  Selected stage: 1    Furthest stage: 1
+  try_place_table returning 4096 of tb_check_link_0 in stage 1
+    Pl vector: [ tb_check_link_0 ]
+  Group table: tbl_lldpd389
+  Group table: tbl_lldpd390
+    - skipping tbl_lldpd389 as its already done
+tbl_lldpd390 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_lldpd390, stage=0)
+  - dependency between tbl_lldpd389 and table advances stage
+  Initial stage is 1, initial entries is 1
+  Selected stage: 1    Furthest stage: 1
+  try_place_table returning 1 of tbl_lldpd390 in stage 1
+    Pl vector: [ tbl_lldpd390 ]
+found 2 tables that could be placed: [ tb_check_link_0, tbl_lldpd390 ]
+Initial best is first table seen: tb_check_link_0
+For trial t : tbl_lldpd390 with best: tb_check_link_0
+    Keeping best tb_check_link_0 for reason: longer downward prop control-included dependence tail chain
+placing 4096 entries of tb_check_link_0 (with gw cond-8) in stage 1(10) FormatType(02)
+stage 1, work: [ 2085656, 2070030, 2081396 ], partly placed 0, placed 3
+    { id=1 ram=4 tcam=0 mram=0 eixb=8 tixb=0 malu=0 salu=0 }
+  Group table: tbl_lldpd389
+  Group table: tbl_lldpd390
+    - skipping tbl_lldpd389 as its already done
+tbl_lldpd390 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_lldpd390, stage=1)
+  Initial stage is 1, initial entries is 1
+  Selected stage: 1    Furthest stage: 2
+  try_place_table returning 1 of tbl_lldpd390 in stage 1
+    Pl vector: [ tbl_lldpd390 ]
+  Group table: tb_check_link_0
+  Group table: cond-9
+  Group table: shift_c_0
+  Group table: tbl_lldpd313
+    - skipping tb_check_link_0 as its already done
+try_place_table(cond-9, stage=1)
+  Merging with match table tbl_lldpd293
+  Initial stage is 1, initial entries is 1
+  Selected stage: 1    Furthest stage: 2
+  try_place_table returning 1 of tbl_lldpd293 in stage 1
+    Pl vector: [ tbl_lldpd293 ]
+  - skipping shift_c_0 due to in-sequence control dependence on cond-9
+  - skipping tbl_lldpd313 due to in-sequence control dependence on cond-9
+  Group table: cond-12
+try_place_table(cond-12, stage=1)
+  Initial stage is 1, initial entries is 0
+  Selected stage: 1    Furthest stage: 2
+  try_place_table returning 0 of cond-12 in stage 1
+    Pl vector: [ cond-12 ]
+found 3 tables that could be placed: [ tbl_lldpd390, tbl_lldpd293, cond-12 ]
+Initial best is first table seen: tbl_lldpd390
+For trial t : tbl_lldpd293 with best: tbl_lldpd390
+    Updating best to tbl_lldpd293 from tbl_lldpd390 for reason: longer downward prop control-included dependence tail chain
+For trial t : cond-12 with best: tbl_lldpd293
+    Keeping best tbl_lldpd293 for reason: longer downward prop control-included dependence tail chain
+placing 1 entries of tbl_lldpd293 (with gw cond-9) in stage 1(11) FormatType(02)
+stage 1, work: [ 2085656, 2081396, 2070516 ], partly placed 0, placed 4
+    { id=1 ram=4 tcam=0 mram=0 eixb=8 tixb=0 malu=0 salu=0 }
+  Group table: tbl_lldpd389
+  Group table: tbl_lldpd390
+    - skipping tbl_lldpd389 as its already done
+tbl_lldpd390 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_lldpd390, stage=1)
+  Initial stage is 1, initial entries is 1
+  Selected stage: 1    Furthest stage: 2
+  try_place_table returning 1 of tbl_lldpd390 in stage 1
+    Pl vector: [ tbl_lldpd390 ]
+  Group table: cond-12
+try_place_table(cond-12, stage=1)
+  Initial stage is 1, initial entries is 0
+  Selected stage: 1    Furthest stage: 2
+  try_place_table returning 0 of cond-12 in stage 1
+    Pl vector: [ cond-12 ]
+  Group table: cond-10
+try_place_table(cond-10, stage=1)
+  Merging with match table tbl_lldpd298
+  - action dependency between tb_check_link_0 and table tbl_lldpd298 due to PHV allocation advances stage to 2
+  Initial stage is 2, initial entries is 1
+  Selected stage: 2    Furthest stage: 2
+  try_place_table returning 1 of tbl_lldpd298 in stage 2
+    Pl vector: [ tbl_lldpd298 ]
+found 3 tables that could be placed: [ tbl_lldpd390, cond-12, tbl_lldpd298 ]
+Initial best is first table seen: tbl_lldpd390
+For trial t : cond-12 with best: tbl_lldpd390
+    Keeping best tbl_lldpd390 for reason: direct control dependency difference
+For trial t : tbl_lldpd298 with best: tbl_lldpd390
+    Keeping best tbl_lldpd390 for reason: earlier stage calculated
+placing 1 entries of tbl_lldpd390 in stage 1(12) FormatType(02)
+stage 1, work: [ 2081396, 2070516 ], partly placed 0, placed 5
+    { id=1 ram=4 tcam=0 mram=0 eixb=8 tixb=0 malu=0 salu=0 }
+  Group table: cond-12
+try_place_table(cond-12, stage=1)
+  Initial stage is 1, initial entries is 0
+  Selected stage: 1    Furthest stage: 2
+  try_place_table returning 0 of cond-12 in stage 1
+    Pl vector: [ cond-12 ]
+  Group table: cond-10
+try_place_table(cond-10, stage=1)
+  Merging with match table tbl_lldpd298
+  - action dependency between tb_check_link_0 and table tbl_lldpd298 due to PHV allocation advances stage to 2
+  Initial stage is 2, initial entries is 1
+  Selected stage: 2    Furthest stage: 2
+  try_place_table returning 1 of tbl_lldpd298 in stage 2
+    Pl vector: [ tbl_lldpd298 ]
+found 2 tables that could be placed: [ cond-12, tbl_lldpd298 ]
+Initial best is first table seen: cond-12
+For trial t : tbl_lldpd298 with best: cond-12
+    Keeping best cond-12 for reason: earlier stage calculated
+placing 0 entries of cond-12 in stage 1(13) FormatType(02)
+stage 1, work: [ 2070516, 2081394 ], partly placed 0, placed 6
+    { id=1 ram=4 tcam=0 mram=0 eixb=9 tixb=0 malu=0 salu=0 }
+  Group table: cond-10
+try_place_table(cond-10, stage=1)
+  Merging with match table tbl_lldpd298
+  - action dependency between tb_check_link_0 and table tbl_lldpd298 due to PHV allocation advances stage to 2
+  Initial stage is 2, initial entries is 1
+  Selected stage: 2    Furthest stage: 2
+  try_place_table returning 1 of tbl_lldpd298 in stage 2
+    Pl vector: [ tbl_lldpd298 ]
+  Group table: cond-13
+try_place_table(cond-13, stage=1)
+  Merging with match table tbl_lldpd317
+  Initial stage is 1, initial entries is 1
+  Selected stage: 1    Furthest stage: 2
+  try_place_table returning 1 of tbl_lldpd317 in stage 1
+  Merging with match table broadcast_0
+  Initial stage is 1, initial entries is 32
+  Selected stage: 1    Furthest stage: 2
+  try_place_table returning 1024 of broadcast_0 in stage 1
+    Pl vector: [ tbl_lldpd317, broadcast_0 ]
+found 3 tables that could be placed: [ tbl_lldpd298, tbl_lldpd317, broadcast_0 ]
+Initial best is first table seen: tbl_lldpd298
+For trial t : tbl_lldpd317 with best: tbl_lldpd298
+    Updating best to tbl_lldpd317 from tbl_lldpd298 for reason: earlier stage calculated
+For trial t : broadcast_0 with best: tbl_lldpd317
+    Updating best to broadcast_0 from tbl_lldpd317 for reason: default choice
+placing 1024 entries of broadcast_0 (with gw cond-13) in stage 1(14) FormatType(02)
+stage 1, work: [ 2070516, 2081203 ], partly placed 0, placed 7
+    { id=2 ram=5 tcam=0 mram=0 eixb=11 tixb=0 malu=0 salu=0 }
+  Group table: cond-10
+try_place_table(cond-10, stage=1)
+  Merging with match table tbl_lldpd298
+  - action dependency between tb_check_link_0 and table tbl_lldpd298 due to PHV allocation advances stage to 2
+  Initial stage is 2, initial entries is 1
+  Selected stage: 2    Furthest stage: 2
+  try_place_table returning 1 of tbl_lldpd298 in stage 2
+    Pl vector: [ tbl_lldpd298 ]
+  Group table: tbl_lldpd317
+  Group table: broadcast_0
+tbl_lldpd317 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_lldpd317, stage=1)
+  Initial stage is 1, initial entries is 1
+  Selected stage: 1    Furthest stage: 2
+  try_place_table returning 1 of tbl_lldpd317 in stage 1
+    Pl vector: [ tbl_lldpd317 ]
+    - skipping broadcast_0 as its already done
+found 2 tables that could be placed: [ tbl_lldpd298, tbl_lldpd317 ]
+Initial best is first table seen: tbl_lldpd298
+For trial t : tbl_lldpd317 with best: tbl_lldpd298
+    Updating best to tbl_lldpd317 from tbl_lldpd298 for reason: earlier stage calculated
+placing 1 entries of tbl_lldpd317 in stage 1(15) FormatType(02)
+stage 1, work: [ 2070516 ], partly placed 0, placed 8
+    { id=2 ram=5 tcam=0 mram=0 eixb=11 tixb=0 malu=0 salu=0 }
+  Group table: cond-10
+try_place_table(cond-10, stage=1)
+  Merging with match table tbl_lldpd298
+  - action dependency between tb_check_link_0 and table tbl_lldpd298 due to PHV allocation advances stage to 2
+  Initial stage is 2, initial entries is 1
+  Selected stage: 2    Furthest stage: 2
+  try_place_table returning 1 of tbl_lldpd298 in stage 2
+    Pl vector: [ tbl_lldpd298 ]
+found 1 tables that could be placed: [ tbl_lldpd298 ]
+Initial best is first table seen: tbl_lldpd298
+placing 1 entries of tbl_lldpd298 (with gw cond-10) in stage 2(20) FormatType(02)
+stage 2, work: [ 2070514 ], partly placed 0, placed 9
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: cond-11
+try_place_table(cond-11, stage=2)
+  Merging with match table tbl_lldpd308
+  Initial stage is 2, initial entries is 1
+  Selected stage: 2    Furthest stage: 3
+  try_place_table returning 1 of tbl_lldpd308 in stage 2
+  Merging with match table tbl_lldpd303
+  Initial stage is 2, initial entries is 1
+  Selected stage: 2    Furthest stage: 3
+  try_place_table returning 1 of tbl_lldpd303 in stage 2
+    Pl vector: [ tbl_lldpd308, tbl_lldpd303 ]
+found 2 tables that could be placed: [ tbl_lldpd308, tbl_lldpd303 ]
+Initial best is first table seen: tbl_lldpd308
+For trial t : tbl_lldpd303 with best: tbl_lldpd308
+    Updating best to tbl_lldpd303 from tbl_lldpd308 for reason: default choice
+placing 1 entries of tbl_lldpd303 (with gw cond-11) in stage 2(21) FormatType(02)
+stage 2, work: [ 2070435 ], partly placed 0, placed 10
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_lldpd308
+tbl_lldpd308 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_lldpd308, stage=2)
+  Initial stage is 2, initial entries is 1
+  Selected stage: 2    Furthest stage: 3
+  try_place_table returning 1 of tbl_lldpd308 in stage 2
+    Pl vector: [ tbl_lldpd308 ]
+found 1 tables that could be placed: [ tbl_lldpd308 ]
+Initial best is first table seen: tbl_lldpd308
+placing 1 entries of tbl_lldpd308 in stage 2(22) FormatType(02)
+stage 2, work: [ 2070030 ], partly placed 0, placed 11
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tb_check_link_0
+  Group table: cond-9
+  Group table: shift_c_0
+  Group table: tbl_lldpd313
+    - skipping tb_check_link_0 as its already done
+    - skipping cond-9 as its already done
+shift_c_0 is not a gateway! Aborting search for merge choices
+try_place_table(shift_c_0, stage=2)
+  - dependency between tbl_lldpd308 and table advances stage
+  Initial stage is 3, initial entries is 64
+  Selected stage: 3    Furthest stage: 3
+  try_place_table returning 1024 of shift_c_0 in stage 3
+    Pl vector: [ shift_c_0 ]
+  - skipping tbl_lldpd313 due to in-sequence control dependence on shift_c_0
+found 1 tables that could be placed: [ shift_c_0 ]
+Initial best is first table seen: shift_c_0
+placing 1024 entries of shift_c_0 in stage 3(30) FormatType(02)
+stage 3, work: [ 2070030 ], partly placed 0, placed 12
+    { id=1 ram=1 tcam=0 mram=0 eixb=1 tixb=0 malu=0 salu=0 }
+  Group table: tb_check_link_0
+  Group table: cond-9
+  Group table: shift_c_0
+  Group table: tbl_lldpd313
+    - skipping tb_check_link_0 as its already done
+    - skipping cond-9 as its already done
+    - skipping shift_c_0 as its already done
+tbl_lldpd313 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_lldpd313, stage=3)
+  - dependency between shift_c_0 and table advances stage
+  Initial stage is 4, initial entries is 1
+  Selected stage: 4    Furthest stage: 4
+  try_place_table returning 1 of tbl_lldpd313 in stage 4
+    Pl vector: [ tbl_lldpd313 ]
+found 1 tables that could be placed: [ tbl_lldpd313 ]
+Initial best is first table seen: tbl_lldpd313
+placing 1 entries of tbl_lldpd313 in stage 4(40) FormatType(022)
+Table placement placed 13 tables in 5 stages
+  Table tbl_lldpd313 logical id 0x40 entries=1
+    attached table SwitchIngress.active_ports entries=4
+  Table shift_c_0 logical id 0x30 entries=1024
+  Table tbl_lldpd308 logical id 0x22 entries=1
+  Table tbl_lldpd303 logical id 0x21 entries=1
+  Gateway cond-11 is also logical id 0x21
+  Table tbl_lldpd298 logical id 0x20 entries=1
+  Gateway cond-10 is also logical id 0x20
+  Table tbl_lldpd317 logical id 0x15 entries=1
+  Table broadcast_0 logical id 0x14 entries=1024
+  Gateway cond-13 is also logical id 0x14
+  Table cond-12 logical id 0x13 entries=0
+  Table tbl_lldpd390 logical id 0x12 entries=1
+  Table tbl_lldpd293 logical id 0x11 entries=1
+  Gateway cond-9 is also logical id 0x11
+  Table tb_check_link_0 logical id 0x10 entries=4096
+  Gateway cond-8 is also logical id 0x10
+  Table tbl_lldpd389 logical id 0x1 entries=1
+  Gateway cond-14 is also logical id 0x1
+  Table tb_init_switch_id_0 logical id 0x0 entries=512
+Finished table placement decisions pipe
+  Adding Ternary Indirect table to tb_init_switch_id_0
+folding gateway cond-8 onto tb_check_link_0
+folding gateway cond-13 onto broadcast_0
+  Adding Ternary Indirect table to tbl_lldpd317
+folding gateway cond-9 onto tbl_lldpd293
+  Adding Ternary Indirect table to tbl_lldpd293
+folding gateway cond-10 onto tbl_lldpd298
+  Adding Ternary Indirect table to tbl_lldpd298
+folding gateway cond-11 onto tbl_lldpd303
+  Adding Ternary Indirect table to tbl_lldpd303
+  Adding Ternary Indirect table to tbl_lldpd308
+folding gateway cond-14 onto tbl_lldpd389
+  Adding Ternary Indirect table to tbl_lldpd389
+  Adding Ternary Indirect table to tbl_lldpd390
+table placement completed pipe
+ingress: [2069931] 0
+  0: tb_init_switch_id_0{ E 0+33, 4 0K }
+  10: tb_check_link_0(ingress::hdr.lldp.$valid == 1;, 1 => $false){ GE 47+10, 2 [1x1 1K 1K 1K 1K] }
+    $false: [2081396]
+      13: cond-12(ingress::hdr.cpu_metadata.$valid == 1; => $true, 1 => $false)
+        $true: [2081394]
+          14: broadcast_0(ingress::hdr.cpu_metadata.fromCpu == 1;, 1 => $false){ GE -1+17, 2 [1x1 1K] }
+            $default: [2081203]
+              15: tbl_lldpd317{ E 0+32, 4 0K }
+            $false: [2199613]
+    $default: [2070030] 0 00
+      11: tbl_lldpd293(ingress::ig_intr_md.ingress_port[8:5] == 0;, 1 => $false)
+        $false: [2070516]
+          20: tbl_lldpd298(ingress::ig_intr_md.ingress_port[8:6] == 0;, 1 => $false){ GE 0+6, 2 0K }
+            $false: [2070514]
+              21: tbl_lldpd303(ingress::ig_intr_md.ingress_port[8:5] in 0x7;, 1 => $false)
+                $false: [2070435]
+                  22: tbl_lldpd308{ E 0+6, 2 0K }
+      30: shift_c_0{ E -4+38, 4 [1x1 1K] }
+      40: tbl_lldpd313
+        stateful SwitchIngress.active_ports    4
+egress: [2085651]
+  1: tbl_lldpd389(egress::hdr.cpu_metadata.$valid == 1 && egress::hdr.cpu_metadata.fromCpu == 1;, 1 => $false)
+    $default: [2085656]
+      12: tbl_lldpd390
+    $false: [2200589]
+
