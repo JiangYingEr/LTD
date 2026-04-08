@@ -1,0 +1,6 @@
+table_add tb_init_switch_id init_switch_id => 2
+table_add broadcast set_mcast_grp 0 => 1
+table_add broadcast set_mcast_grp 255 => 1
+mc_mgrp_create 1
+mc_node_create 0 1 2
+mc_node_associate 1 0

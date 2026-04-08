@@ -1,0 +1,12 @@
+mirroring_add 100 4
+
+table_add MyIngress.ipv4_lpm ipv4_forward 10.0.0.1 => 2
+table_add MyIngress.ipv4_lpm ipv4_forward 10.0.0.2 => 1
+table_add MyIngress.ipv4_lpm ipv4_forward 10.0.0.3 => 3
+
+table_add MyIngress.sip_learn NoAction 10.0.0.1 10.0.0.2
+table_add MyIngress.sip_learn NoAction 10.0.0.2 10.0.0.3
+table_add MyIngress.sip_learn NoAction 10.0.0.2 10.0.0.1
+table_add MyIngress.sip_learn NoAction 10.0.0.3 10.0.0.2
+
+table_set_default MyIngress.tb_init_switch_id init_switch_id 2
