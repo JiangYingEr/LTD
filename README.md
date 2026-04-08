@@ -29,7 +29,7 @@ In a new terminal:
 sudo python3 switch_os.py
 ```
 
-If you only want to run ONLY one switch:
+If you only want to run one switch:
 
 ```bash
 sudo python3 switch_os.py --switch s1
