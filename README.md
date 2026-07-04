@@ -2,6 +2,22 @@
 
 Existing topology discovery methods for programmable networks (e.g., SDN) heavily rely on controllers to process massive LLDP packets, causing severe overhead that increases linearly with link changes. Therefore, we propose LTD, the first mechanism offloading core topology discovery to programmable data planes. LTD adopts three key strategies: three-layered maximum offloading that distributes tasks across switch ASIC, OS, and controller; an OS-ASIC co-driven mechanism that utilizes the characteristics of programmable switches to achieve periodic link change identification; and a plug-and-play data structure for seamless topology view updates. 
 
+# Citation
+
+```
+@INPROCEEDINGS{11571363,
+  author={Kong, Dezhang and Li, Minghao and Lin, Shi and Xu, Zhenhua and Zhu, Longlong and Zheng, Linying and Chen, Xiang and Lin, Changting and Liu, Xuan and Zhang, Dong and Wu, Chunming and Han, Meng},
+  booktitle={IEEE INFOCOM 2026 - IEEE Conference on Computer Communications}, 
+  title={LTD: Low-Overhead Topology Discovery using Programmable Data Planes}, 
+  year={2026},
+  volume={},
+  number={},
+  pages={1-10},
+  keywords={Joining processes;Ports (computers);Switches;Topology;Software defined networking;Printing;Application specific integrated circuits;Aluminum;Arrays;Central Processing Unit},
+  doi={10.1109/INFOCOM59046.2026.11571363}}
+
+```
+
 ## Environment
 The P4 VM Ubuntu20.04. [Download](https://github.com/p4lang/tutorials?tab=readme-ov-file)
 
