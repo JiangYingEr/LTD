@@ -13,7 +13,6 @@ Existing topology discovery methods for programmable networks (e.g., SDN) heavil
   volume={},
   number={},
   pages={1-10},
-  keywords={Joining processes;Ports (computers);Switches;Topology;Software defined networking;Printing;Application specific integrated circuits;Aluminum;Arrays;Central Processing Unit},
   doi={10.1109/INFOCOM59046.2026.11571363}}
 
 ```
